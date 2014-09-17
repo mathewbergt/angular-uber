@@ -4,33 +4,50 @@ angular.module('mbergt.uber', []).
 factory('mbUber', function($q, $http) {
   return function modalFactory(config) {
     
-    var baseUrl = 'https://api.uber.com/v1',
-        serverToken = null;
+    var baseUrl = 'https://api.uber.com',
+        version = '/v1',
+        serverToken = null,
+        clientId = null,
+        authCredentials = {
+          response_type = null,
+          client_id = null,
+          scope = null,
+          state= null,
+          redirect_uri = null
+        };
     
-    function setServerToken(token){
+    function setServerToken(token) {
       serverToken = token;
     }
     
-    function getServerToken(){
+    function getServerToken() {
       return serverToken;
     }
     
-    function getProducts() {
-      //var baseUrl = 'https://api.uber.com/v1/products'
-      
-      // var parameters = {
-      //   latitude: "37.775818",
-      //   longitude: "-122.418028",
-      //   serverToken: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB'
-      // };
-      
-      
+    function setClientId(clientId) {
+      clientId = clientId;
+    }
+    
+    function getClientId() {
+      return clientId;
+    }
+    
+    function getProducts(latitude, longitude) {
+      latitude = '37.775818';
+      longitude = '-122.418028';
+      serverToken = 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
+      var path = 'products';
       
       $http({
           method: 'GET',
-          url: 'https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB',
+          url: baseUrl + version + path,
+          params: {
+            latitude: latitude,
+            longitude: longitude,
+            server_token: serverToken
+          },
           headers: {
-              "Authorization": "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB"
+              Authorization: serverToken
           }
       }).
       success(function(data, status, headers, config) {
@@ -41,40 +58,52 @@ factory('mbUber', function($q, $http) {
         console.log('error');
         console.log(data);
       });
-
-      // var xhr = new XMLHttpRequest();
-      // xhr.open('GET', 'https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB', true);
-      // xhr.setRequestHeader("Authorization", "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB");
-      // xhr.send();
       
-      //xhr.withCredentials = true;
-      //xhr.setRequestHeader("Access-Control-Allow-Origin", "");
-      //xhr.setRequestHeader("Origin", "3295jn235jk23j5k2j3kla5j");
+      return {};
       
-
-      // $http({ 
-      //   method: 'GET', 
-      //   url: url,
-      //   params: parameters, 
-      //   headers: {
-      //     'Authorization': "MNDPWpoL2NefcEjz1DlMz9BYFGEbRu34u5kXl7TM"
-      //   }
-      // }).
-      // success(function(data, status, headers, config) {
-      //   console.log('success');
-      //   console.log(data);
-      // }).
-      // error(function(data, status, headers, config) {
-      //   console.log('error');
-      //   console.log(data);
-      // });
     }
+    
+    function getPriceEstimates(startLatitude, startLongitude, endLatitude, endLongitude) {
+      return {};
+    }
+    
+    function getTimeEstimates(startLatitude, startLongitude, customerUuid, productId) {
+      return {};
+    }
+    
+    function getHistory(offset, limit, version) {
+      return {};
+    }
+    
+    function getUserProfile() {
+      return {};
+    }
+    
+    function setAuthCredentials(responseType, clientId, scope, state, redirectUri) {
+      authCredentials = {
+        response_type = responseType,
+        client_id = clientId,
+        scope = scope,
+        state= state,
+        redirect_uri = redirectUri
+      };
+    }
+    
+    
 
 
     return {
       getProducts: getProducts,
       setServerToken: setServerToken,
-      getServerToken: getServerToken
+      getServerToken: getServerToken,
+      setClientId: setClientId,
+      getClientId: getClientId,
+      getProducts: getProducts,
+      getPriceEstimates: getPriceEstimates,
+      getTimeEstimates: getTimeEstimates,
+      getHistory: getHistory,
+      getUserProfile: getUserProfile,
+      setAuthCredentials: setAuthCredentials
     };
 
 
