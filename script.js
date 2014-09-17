@@ -67,7 +67,9 @@ factory('mbUber', function($q, $http) {
 
 
     return {
-      getProducts: getProducts
+      getProducts: getProducts,
+      setServerToken: setServerToken,
+      getServerToken: getServerToken
     };
 
 
