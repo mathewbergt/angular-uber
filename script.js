@@ -47,7 +47,7 @@ factory('mbUber', function($q, $http) {
             server_token: serverToken
           },
           headers: {
-              Authorization: serverToken
+            'Authorization': serverToken
           }
       }).
       success(function(data, status, headers, config) {
