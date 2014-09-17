@@ -33,10 +33,10 @@ factory('mbUber', function($q, $http) {
     }
     
     function getProducts(latitude, longitude) {
-      // latitude = '37.775818';
-      // longitude = '-122.418028';
-      // serverToken = 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
-      // var path = 'products';
+      latitude = '37.775818';
+      longitude = '-122.418028';
+      serverToken = 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
+      var path = 'products';
       var parms = '?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
       
       $http({
