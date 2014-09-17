@@ -4,6 +4,9 @@ angular.module('mbergt.uber', []).
 factory('mbUber', function($q, $http) {
   return function modalFactory(config) {
     
+    var baseUrl = 'https://api.uber.com/v1',
+        serverToken = null;
+    
     function setServerToken(token){
       serverToken = token;
     }
@@ -14,8 +17,7 @@ factory('mbUber', function($q, $http) {
     
     function getProducts() {
       //var baseUrl = 'https://api.uber.com/v1/products'
-      var baseUrl = 'https://api.uber.com/v1',
-          serverToken = null;
+      
       // var parameters = {
       //   latitude: "37.775818",
       //   longitude: "-122.418028",
