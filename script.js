@@ -26,26 +26,26 @@ factory('mbUber', function($q, $http) {
       
       
       
-      // $http({
-      //     method: 'GET',
-      //     url: 'https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB',
-      //     headers: {
-      //         "Authorization": "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB"
-      //     }
-      // }).
-      // success(function(data, status, headers, config) {
-      //   console.log('success');
-      //   console.log(data);
-      // }).
-      // error(function(data, status, headers, config) {
-      //   console.log('error');
-      //   console.log(data);
-      // });
+      $http({
+          method: 'GET',
+          url: 'https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB',
+          headers: {
+              "Authorization": "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB"
+          }
+      }).
+      success(function(data, status, headers, config) {
+        console.log('success');
+        console.log(data);
+      }).
+      error(function(data, status, headers, config) {
+        console.log('error');
+        console.log(data);
+      });
 
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB', true);
-      xhr.setRequestHeader("Authorization", "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB");
-      xhr.send();
+      // var xhr = new XMLHttpRequest();
+      // xhr.open('GET', 'https://api.uber.com/v1/products?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB', true);
+      // xhr.setRequestHeader("Authorization", "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB");
+      // xhr.send();
       
       //xhr.withCredentials = true;
       //xhr.setRequestHeader("Access-Control-Allow-Origin", "");
