@@ -9,11 +9,11 @@ factory('mbUber', function($q, $http) {
         serverToken = null,
         clientId = null,
         authCredentials = {
-          response_type = null,
-          client_id = null,
-          scope = null,
-          state= null,
-          redirect_uri = null
+          response_type: null,
+          client_id: null,
+          scope: null,
+          state: null,
+          redirect_uri: null
         };
     
     function setServerToken(token) {
