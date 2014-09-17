@@ -80,7 +80,7 @@ factory('mbUber', function($q, $http) {
     }
     
     function setAuthCredentials(responseType, clientId, scope, state, redirectUri) {
-      authCredentials: {
+      authCredentials = {
         response_type: responseType,
         client_id: clientId,
         scope: scope,
