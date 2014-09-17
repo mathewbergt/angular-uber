@@ -3,6 +3,15 @@
 angular.module('mbergt.uber', []).
 factory('mbUber', function($q, $http) {
   return function modalFactory(config) {
+    
+    function setServerToken(token){
+      serverToken = token;
+    }
+    
+    function getServerToken(){
+      return serverToken;
+    }
+    
     function getProducts() {
       //var baseUrl = 'https://api.uber.com/v1/products'
       var baseUrl = 'https://api.uber.com/v1',
@@ -13,13 +22,7 @@ factory('mbUber', function($q, $http) {
       //   serverToken: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB'
       // };
       
-      function setServerToken(token){
-        serverToken = token;
-      }
       
-      function getServerToken(){
-        return serverToken;
-      }
       
       // $http({
       //     method: 'GET',
@@ -83,8 +86,8 @@ factory('myUber', function(mbUber) {
   return mbUber();
 }).
 controller('MyCtrl', function($scope, myUber) {
-  //myUber.setServerToken('VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB');
-  console.log(myUber);
+  myUber.setServerToken('VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB');
+  console.log(myUber.getServerToken());
   
   $scope.getProducts = myUber.getProducts;
 });
