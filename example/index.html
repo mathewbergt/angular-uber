@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body ng-app="angularUberTestApp">
+    <div class="container">
+        <h3 class="text-muted">angular-uber</h3>
+      </div>
+
+      <div ng-controller="MainCtrl as main">
+        <div ui-view class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.getProducts()">Get Products</button>
+              <button class="btn btn-primary" ng-click="main.getPriceEstimates()">Get Price Estimates</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.getTimeEstimates()">Get Time Estimates</button>
+              <button class="btn btn-primary" ng-click="main.getPromotions()">Get Promotions</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.getProductById()">Get Product By ID</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.authorize()">Authorize</button>
+              <button class="btn btn-primary" ng-click="main.getUserProfile()">Get Authorized User Profile</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.getHistoryV11()">Get History V1.1</button>
+              <button class="btn btn-primary" ng-click="main.getHistoryV12()">Get History V1.2</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.makeRequest()">Make Request</button>
+              <button class="btn btn-primary" ng-click="main.getRequestDetails()">Get Request Details</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.getRequestEstimate()">Get Request Estimate</button>
+              <button class="btn btn-primary" ng-click="main.getRequestReceipt()">Get Request Receipt</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-group">
+              <button class="btn btn-primary" ng-click="main.cancelRequest()">Cancel Request</button>
+              <button class="btn btn-primary" ng-click="main.getRequestMap()">Get Request Map</button>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="well">{{ main.uberOutput }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="scripts/angular-uber.js"></script>
+    <script src="scripts/app/app.module.js"></script>
+    <script src="scripts/app/app.config.js"></script>
+    <script src="scripts/app/app.controller.js"></script>
+    <script src="scripts/app/app.service.js"></script>
+</body>
+</html>

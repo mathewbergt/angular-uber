@@ -1,0 +1,32 @@
+{
+  "name": "angular-uber-example",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^1.8.2",
+    "gulp": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "description": "an example app demonstrating the functionality of angular-uber.js",
+  "main": "index.html",
+  "directories": {
+    "styles": "styles",
+    "scripts": "scripts",
+    "vendor": "vendor"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mathewbergt/angular-uber"
+  },
+  "author": "mathewbergt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathewbergt/angular-uber/issues"
+  },
+  "homepage": "https://github.com/mathewbergt/angular-uber"
+}
