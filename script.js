@@ -60,7 +60,7 @@ factory('mbUber', function($q, $http) {
       //   console.log(data);
       // });
       
-      myData([{
+      function myData([{
         client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
         client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
         grant_type: 'authorization_code',
