@@ -60,20 +60,20 @@ factory('mbUber', function($q, $http) {
       //   console.log(data);
       // });
       
-      myData([{
-        client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
-        client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
-        grant_type: 'authorization_code',
-        redirect_uri: 'https://mathewbergt.github.io/angular-uber&code=8dk6uFp5pV6KG5gUS6hnhXKqPngtC7'
-      }]);
+      // myData([{
+      //   client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
+      //   client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
+      //   grant_type: 'authorization_code',
+      //   redirect_uri: 'https://mathewbergt.github.io/angular-uber&code=8dk6uFp5pV6KG5gUS6hnhXKqPngtC7'
+      // }]);
       
-      $http.jsonp('https://login.uber.com/oauth/token?myData')
-      .success(function(data){
-         console.log('success');
-      })
-      .error(function () {
-        console.log('error')
-      });
+      // $http.jsonp('https://login.uber.com/oauth/token?myData')
+      // .success(function(data){
+      //   console.log('success');
+      // })
+      // .error(function () {
+      //   console.log('error')
+      // });
       
       
       
