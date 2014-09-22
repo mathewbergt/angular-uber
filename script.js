@@ -61,8 +61,8 @@ factory('mbUber', function($q, $http) {
       // });
       
       $http({
-          method: 'POST',
-          url: 'https://login.uber.com/oauth/token',
+          method: 'JSONP',
+          url: 'https://login.uber.com/oauth/token?callback=JSON_CALLBACK',
           params: {
             client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
             client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
