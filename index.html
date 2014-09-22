@@ -11,10 +11,15 @@
     <button ng-click="getProducts()">Get Products</button>
     <div>Hello world!</div>
     <iframe>
-      <form action="https://login.uber.com/oauth/token" method="POST">
-        <input type="submit" value="Submit">
-      </form>
+      <!DOCTYPE html>
+      <html>
+        <head></head>
+        <body ng-controller="MyCtrl">
+          <form action="https://login.uber.com/oauth/token" method="POST">
+            <input type="submit" value="Submit">
+          </form>
+        </body>
+      </html>
     </iframe>
-    
   </body>
 </html>
