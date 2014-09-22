@@ -64,10 +64,10 @@ factory('mbUber', function($q, $http) {
           method: 'POST',
           url: 'https://login.uber.com/oauth/token',
           params: {
-            client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb'
-            client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL'
-            grant_type: 'authorization_code'
-            redirect_uri: 'https://mathewbergt.github.io/angular-uber'
+            client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
+            client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
+            grant_type: 'authorization_code',
+            redirect_uri: 'https://mathewbergt.github.io/angular-uber',
             code: '0UfXCJNuJvsPvZJEwEMIXFytoBlw8K'
           }
       }).
