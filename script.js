@@ -107,7 +107,7 @@ factory('mbUber', function($q, $http) {
       //xhr.setRequestHeader("Authorization", "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB");
       
       // xhr.send();
-      document.write(JSON.stringify(result));
+      document.write(JSON.stringify(result.products));
       return {};
       
     }
