@@ -39,36 +39,16 @@ factory('mbUber', function($q, $http) {
       var path = 'products';
       var parms = '?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
       
-      // $http({
-      //     method: 'GET',
-      //     url: baseUrl + version + path + parms,
-      //     // params: {
-      //     //   latitude: latitude,
-      //     //   longitude: longitude,
-      //     //   server_token: serverToken
-      //     // },
-      //     headers: {
-      //       'Authorization': serverToken
-      //     }
-      // }).
-      // success(function(data, status, headers, config) {
-      //   console.log('success');
-      //   console.log(data);
-      // }).
-      // error(function(data, status, headers, config) {
-      //   console.log('error');
-      //   console.log(data);
-      // });
-      
       $http({
-          method: 'JSONP',
-          url: 'https://login.uber.com/oauth/token?callback=JSON_CALLBACK',
-          params: {
-            client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
-            client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
-            grant_type: 'authorization_code',
-            redirect_uri: 'https://mathewbergt.github.io/angular-uber',
-            code: '0UfXCJNuJvsPvZJEwEMIXFytoBlw8K'
+          method: 'GET',
+          url: baseUrl + version + path + parms,
+          // params: {
+          //   latitude: latitude,
+          //   longitude: longitude,
+          //   server_token: serverToken
+          // },
+          headers: {
+            'Authorization': serverToken
           }
       }).
       success(function(data, status, headers, config) {
@@ -79,6 +59,26 @@ factory('mbUber', function($q, $http) {
         console.log('error');
         console.log(data);
       });
+      
+      // $http({
+      //     method: 'JSONP',
+      //     url: 'https://login.uber.com/oauth/token?callback=JSON_CALLBACK',
+      //     params: {
+      //       client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
+      //       client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
+      //       grant_type: 'authorization_code',
+      //       redirect_uri: 'https://mathewbergt.github.io/angular-uber',
+      //       code: '0UfXCJNuJvsPvZJEwEMIXFytoBlw8K'
+      //     }
+      // }).
+      // success(function(data, status, headers, config) {
+      //   console.log('success');
+      //   console.log(data);
+      // }).
+      // error(function(data, status, headers, config) {
+      //   console.log('error');
+      //   console.log(data);
+      // });
       
       // myData([{
       //   client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
