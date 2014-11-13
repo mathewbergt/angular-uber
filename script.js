@@ -37,16 +37,16 @@ factory('mbUber', function($q, $http) {
       longitude = '-122.418028';
       serverToken = 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
       var path = 'products';
-      var parms = '?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
+      //var parms = '?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
       var result = {};
       $http({
           method: 'GET',
-          url: baseUrl + version + path + parms,
-          // params: {
-          //   latitude: latitude,
-          //   longitude: longitude,
-          //   server_token: serverToken
-          // },
+          url: baseUrl + version + path, // + parms,
+          params: {
+            latitude: latitude,
+            longitude: longitude,
+            server_token: serverToken
+          },
           headers: {
             'Authorization': serverToken
           }
