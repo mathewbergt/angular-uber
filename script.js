@@ -16,7 +16,7 @@ factory('mbUber', function($q, $http) {
           redirect_uri: null
         };
         
-    function api(endpoint, params, headers, method) {
+    function api(endpoint, params, headers, data, method) {
       var deferred = $q.defer();
       
       $http({
