@@ -16,7 +16,7 @@ factory('mbUber', function($q, $http) {
           redirect_uri: null
         };
         
-    function api(endpoint, params, data, method, headers) {
+    function api(endpoint, params, data, headers, method) {
       var deferred = $q.defer();
       
       $http({
@@ -59,10 +59,10 @@ factory('mbUber', function($q, $http) {
       var path = 'products';
       //var parms = '?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
       var result = {};
-      api('products', {
-        latitude: '37.775818',
-        longitude: '-122.418028'
-      });
+      api('products', 
+          { latitude: '37.775818', longitude: '-122.418028' },
+          { Authorization: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB' }
+      );
       // $http({
       //     method: 'GET',
       //     url: baseUrl + version + path, // + parms,
