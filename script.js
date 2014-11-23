@@ -61,7 +61,7 @@ factory('mbUber', function($q, $http) {
       var result = {};
       api('products', 
           { latitude: '37.775818', longitude: '-122.418028' },
-          { Authorization: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB' }
+          { 'Authorization': 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB' }
       );
       // $http({
       //     method: 'GET',
