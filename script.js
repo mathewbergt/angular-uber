@@ -20,7 +20,7 @@ factory('mbUber', function($q, $http) {
       var deferred = $q.defer();
 
       $http({
-        url: this.baseUrl + this.version + endpoint,
+        url: baseUrl + version + endpoint,
         method: method ? method : 'GET',
         params: params,
         data: data,
