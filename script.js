@@ -18,11 +18,11 @@ factory('mbUber', function($q, $http) {
         
     function api(endpoint, params, data, method, headers) {
       var deferred = $q.defer();
-
+      
       $http({
         url: baseUrl + version + endpoint,
         method: method ? method : 'GET',
-        params: params,
+        params: $.extend(params, { server_token: serverToken }),
         data: data,
         headers: headers
       })
