@@ -6,7 +6,7 @@ factory('mbUber', function($q, $http) {
     //https://login.uber.com/oauth/token?client_secret=TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb&client_id=jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL&grant_type=authorization_code&redirect_uri=https://mathewbergt.github.io/angular-uber&code=8dk6uFp5pV6KG5gUS6hnhXKqPngtC7
     var baseUrl = 'https://api.uber.com',
         version = '/v1/',
-        serverToken = null,
+        serverToken = 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB',
         clientId = null,
         authCredentials = {
           response_type: null,
@@ -16,11 +16,11 @@ factory('mbUber', function($q, $http) {
           redirect_uri: null
         };
         
-    function api(endpoint, method, params, data, headers) {
+    function api(endpoint, params, data, method, headers) {
       var deferred = $q.defer();
 
       $http({
-        url: this.apiBase + endpoint,
+        url: this.baseUrl + this.version + endpoint,
         method: method ? method : 'GET',
         params: params,
         data: data,
@@ -59,27 +59,31 @@ factory('mbUber', function($q, $http) {
       var path = 'products';
       //var parms = '?latitude=37.7759792&longitude=-122.41823&server_token=VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
       var result = {};
-      $http({
-          method: 'GET',
-          url: baseUrl + version + path, // + parms,
-          params: {
-            latitude: latitude,
-            longitude: longitude,
-            server_token: serverToken
-          },
-          headers: {
-            'Authorization': serverToken
-          }
-      }).
-      success(function(data, status, headers, config) {
-        console.log('success');
-        console.log(data);
-        result = data;
-      }).
-      error(function(data, status, headers, config) {
-        console.log('error');
-        console.log(data);
+      api('products', {
+        latitude: '37.775818',
+        longitude: '-122.418028'
       });
+      // $http({
+      //     method: 'GET',
+      //     url: baseUrl + version + path, // + parms,
+      //     params: {
+      //       latitude: latitude,
+      //       longitude: longitude,
+      //       server_token: serverToken
+      //     },
+      //     headers: {
+      //       'Authorization': serverToken
+      //     }
+      // }).
+      // success(function(data, status, headers, config) {
+      //   console.log('success');
+      //   console.log(data);
+      //   result = data;
+      // }).
+      // error(function(data, status, headers, config) {
+      //   console.log('error');
+      //   console.log(data);
+      // });
       
       // $http({
       //     method: 'JSONP',
@@ -127,7 +131,7 @@ factory('mbUber', function($q, $http) {
       //xhr.setRequestHeader("Authorization", "VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB");
       
       // xhr.send();
-      document.write(JSON.stringify(result.products));
+      //document.write(JSON.stringify(result.products));
       return {};
       
     }
