@@ -22,7 +22,7 @@ factory('mbUber', function($q, $http) {
       $http({
         url: baseUrl + version + endpoint,
         method: method ? method : 'GET',
-        params: $.extend(params, { server_token: serverToken }),
+        params: params,
         data: data,
         headers: headers
       })
