@@ -15,6 +15,26 @@ factory('mbUber', function($q, $http) {
           state: null,
           redirect_uri: null
         };
+        
+    function api(endpoint, method, params, data, headers) {
+      var deferred = $q.defer();
+
+      $http({
+        url: this.apiBase + endpoint,
+        method: method ? method : 'GET',
+        params: params,
+        data: data,
+        headers: headers
+      })
+      .success(function (data) {
+        deferred.resolve(data);
+      })
+      .error(function (data) {
+        deferred.reject(data);
+      });
+
+      return deferred.promise;
+    };
     
     function setServerToken(token) {
       serverToken = token;
