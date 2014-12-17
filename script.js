@@ -192,5 +192,5 @@ controller('MyCtrl', function($scope, myUber) {
   myUber.setServerToken('VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB');
   //console.log(myUber.getServerToken());
   
-  //$scope.getProducts = myUber.getProducts;
+  $scope.getProducts = myUber.getProducts;
 });
