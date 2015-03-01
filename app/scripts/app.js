@@ -128,9 +128,6 @@ angular.module('mbergt.uber', [])
                 };
             }
 
-
-
-
             return {
                 setServerToken: setServerToken,
                 getServerToken: getServerToken,
@@ -151,8 +148,5 @@ angular.module('mbergt.uber', [])
 
 angular.module('angularUberApp', ['mbergt.uber'])
     .factory('myUber', function (mbUber) {
-        return mbUber({
-            serverToken: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB'//,
-            //clientId: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL'
-        });
+        return mbUber();
     });

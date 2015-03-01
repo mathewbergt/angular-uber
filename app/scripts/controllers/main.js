@@ -9,7 +9,7 @@
  */
 angular.module('angularUberApp').
 controller('MainCtrl', function ($scope, myUber, $q) {
-    //myUber.setServerToken('VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB');
+    myUber.setServerToken('VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB');
     //$scope.getProducts = myUber.getProducts;
     $scope.signIn = myUber.signIn;
 
