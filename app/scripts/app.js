@@ -69,27 +69,27 @@ angular.module('mbergt.uber', [])
             }
 
             function signIn() {
-                var userLatitude = '37.775818';
-                var userLongitude = '-122.418028';
+                // var userLatitude = '37.775818';
+                // var userLongitude = '-122.418028';
                 
-                var partyLatitude = '37.779185';
-                var partyLongitude = '-122.859645';
+                // var partyLatitude = '37.779185';
+                // var partyLongitude = '-122.859645';
                 
-                // Redirect to Uber API via deep-linking to the mobile web-app
-                var uberURL = "https://m.uber.com/sign-up?";
+                // // Redirect to Uber API via deep-linking to the mobile web-app
+                // var uberURL = "https://m.uber.com/sign-up?";
 
-                // Add parameters
-                uberURL += "client_id=" + clientId;
-                //if (typeof userLatitude != typeof undefined) uberURL += "&" + "pickup_latitude=" + userLatitude;
-                //if (typeof userLongitude != typeof undefined) uberURL += "&" + "pickup_longitude=" + userLongitude;
-                uberURL += "&" + "pickup_latitude=" + userLatitude;
-                uberURL += "&" + "pickup_longitude=" + userLongitude;
-                uberURL += "&" + "dropoff_latitude=" + partyLatitude;
-                uberURL += "&" + "dropoff_longitude=" + partyLongitude;
-                uberURL += "&" + "dropoff_nickname=" + "MattTest";
+                // // Add parameters
+                // uberURL += "client_id=" + clientId;
+                // //if (typeof userLatitude != typeof undefined) uberURL += "&" + "pickup_latitude=" + userLatitude;
+                // //if (typeof userLongitude != typeof undefined) uberURL += "&" + "pickup_longitude=" + userLongitude;
+                // uberURL += "&" + "pickup_latitude=" + userLatitude;
+                // uberURL += "&" + "pickup_longitude=" + userLongitude;
+                // uberURL += "&" + "dropoff_latitude=" + partyLatitude;
+                // uberURL += "&" + "dropoff_longitude=" + partyLongitude;
+                // uberURL += "&" + "dropoff_nickname=" + "MattTest";
 
-                // Redirect to Uber
-                window.location.href = uberURL;
+                // // Redirect to Uber
+                // window.location.href = uberURL;
             }
 
             function getPriceEstimates(startLatitude, startLongitude, endLatitude, endLongitude) {
