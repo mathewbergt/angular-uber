@@ -32,5 +32,20 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "description": "angular-uber ============",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mathewbergt/angular-uber"
+  },
+  "author": "mathewbergt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathewbergt/angular-uber/issues"
+  },
+  "homepage": "https://github.com/mathewbergt/angular-uber"
 }

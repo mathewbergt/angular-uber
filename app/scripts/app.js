@@ -11,10 +11,10 @@
 angular.module('mbergt.uber', [])
     .factory('mbUber', function ($q, $http) {
         return function modalFactory(config) {
-            var baseUrl = 'https://api.uber.com',
-                version = '/v1/',
-                serverToken = null, //'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB',
-                clientId = 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
+            var baseUrl = config.baseUrl || 'https://api.uber.com',
+                version = config.version || '/v1/',
+                serverToken = config.serverToken,
+                clientId = config.clientId,
                 authCredentials = {
                     response_type: null,
                     client_id: null,
@@ -31,14 +31,16 @@ angular.module('mbergt.uber', [])
                     method: method ? method : 'GET',
                     params: params,
                     data: data,
-                    headers: headers
+                    headers: {
+                        Authorization: "Token " + serverToken
+                    }
                 })
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .error(function (data) {
-                        deferred.reject(data);
-                    });
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
 
                 return deferred.promise;
             };
@@ -60,12 +62,9 @@ angular.module('mbergt.uber', [])
             }
 
             function getProducts(latitude, longitude) {
-                //serverToken = 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB';
                 return api('products', {
-                    latitude: '37.775818',
-                    longitude: '-122.418028'
-                }, {
-                    Authorization: "Token " + serverToken
+                    latitude: latitude,
+                    longitude: longitude
                 });
             }
 
@@ -94,7 +93,12 @@ angular.module('mbergt.uber', [])
             }
 
             function getPriceEstimates(startLatitude, startLongitude, endLatitude, endLongitude) {
-                return {};
+                return api('estimates/price', {
+                    start_latitude: startLatitude,
+                    start_longitude: startLongitude,
+                    end_latitude: endLatitude,
+                    end_longitude: endLongitude
+                });
             }
 
             function getTimeEstimates(startLatitude, startLongitude, customerUuid, productId) {
@@ -142,5 +146,8 @@ angular.module('mbergt.uber', [])
 
 angular.module('angularUberApp', ['mbergt.uber'])
     .factory('myUber', function (mbUber) {
-        return mbUber();
+        return mbUber({
+            serverToken: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB'//,
+            //clientId: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL'
+        });
     });
