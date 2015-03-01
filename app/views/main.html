@@ -1,7 +1,19 @@
 <body ng-controller="MainCtrl">
-  <button class="btn btn-primary" ng-click="getProducts()">Get Products</button>
-  <button class="btn btn-primary" ng-click="getPriceEstimates()">Get Price Estimates</button>
-  <button class="btn btn-primary" ng-click="getTimeEstimates()">Get Time Estimates</button>
-  <div ng-controller="MainCtrl">{{ uberOutput }}</div>
+  <div class="container">
+	  <div class="row">
+	  	<div class="col-sm-12">
+	  		<div class="btn-group">
+			  <button class="btn btn-primary" ng-click="getProducts()">Get Products</button>
+			  <button class="btn btn-primary" ng-click="getPriceEstimates()">Get Price Estimates</button>
+			  <button class="btn btn-primary" ng-click="getTimeEstimates()">Get Time Estimates</button>
+		  </div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-sm-12">
+	  		<div class="well">{{ uberOutput }}</div>
+	  	</div>
+	  </div>
+  </div>
 <!--  <button class="btn btn-primary" ng-click="signIn()">Sign In</button>-->
 </body>
