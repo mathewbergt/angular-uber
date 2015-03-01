@@ -102,7 +102,12 @@ angular.module('mbergt.uber', [])
             }
 
             function getTimeEstimates(startLatitude, startLongitude, customerUuid, productId) {
-                return {};
+                return api('estimates/time', {
+                    start_latitude: startLatitude,
+                    start_longitude: startLongitude,
+                    customer_uuid: customerUuid,
+                    product_id: productId
+                });
             }
 
             function getHistory(offset, limit, version) {

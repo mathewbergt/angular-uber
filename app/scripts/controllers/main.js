@@ -17,11 +17,17 @@ controller('MainCtrl', function ($scope, myUber, $q) {
     $scope.getProducts = function() {
     	$q.when(myUber.getProducts('37.775818', '-122.418028')).then(function(d) {
     		$scope.uberOutput = JSON.stringify(d);
-    	})
+    	});
     }
 
     $scope.getPriceEstimates = function() {
     	$q.when(myUber.getPriceEstimates('37.775818', '-122.418028', '37.8', '-122.5')).then(function(d) {
+    		$scope.uberOutput = JSON.stringify(d);
+    	});
+    }
+
+    $scope.getTimeEstimates = function() {
+    	$q.when(myUber.getTimeEstimates('37.775818', '-122.418028')).then(function(d) {
     		$scope.uberOutput = JSON.stringify(d);
     	});
     }
