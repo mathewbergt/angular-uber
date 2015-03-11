@@ -11,6 +11,10 @@
 angular.module('mbergt.uber', [])
     .factory('mbUber', function ($q, $http) {
         return function modalFactory(config) {
+            if (!config) {
+                config = {};
+            }
+
             var baseUrl = config.baseUrl || 'https://api.uber.com',
                 version = config.version || '/v1/',
                 serverToken = config.serverToken,
@@ -66,31 +70,7 @@ angular.module('mbergt.uber', [])
                     latitude: latitude,
                     longitude: longitude
                 });
-            }
-
-            function signIn() {
-                // var userLatitude = '37.775818';
-                // var userLongitude = '-122.418028';
-                
-                // var partyLatitude = '37.779185';
-                // var partyLongitude = '-122.859645';
-                
-                // // Redirect to Uber API via deep-linking to the mobile web-app
-                // var uberURL = "https://m.uber.com/sign-up?";
-
-                // // Add parameters
-                // uberURL += "client_id=" + clientId;
-                // //if (typeof userLatitude != typeof undefined) uberURL += "&" + "pickup_latitude=" + userLatitude;
-                // //if (typeof userLongitude != typeof undefined) uberURL += "&" + "pickup_longitude=" + userLongitude;
-                // uberURL += "&" + "pickup_latitude=" + userLatitude;
-                // uberURL += "&" + "pickup_longitude=" + userLongitude;
-                // uberURL += "&" + "dropoff_latitude=" + partyLatitude;
-                // uberURL += "&" + "dropoff_longitude=" + partyLongitude;
-                // uberURL += "&" + "dropoff_nickname=" + "MattTest";
-
-                // // Redirect to Uber
-                // window.location.href = uberURL;
-            }
+            }            
 
             function getPriceEstimates(startLatitude, startLongitude, endLatitude, endLongitude) {
                 return api('estimates/price', {
@@ -110,12 +90,24 @@ angular.module('mbergt.uber', [])
                 });
             }
 
+            function getPromotions(startLatitude, startLongitude, endLatitude, endLongitude) {
+                return api('promotions', {
+                    start_latitude: startLatitude,
+                    start_longitude: startLongitude,
+                    end_latitude: endLatitude,
+                    end_longitude: endLongitude
+                });
+            }
+
             function getHistory(offset, limit, version) {
-                return {};
+                return api((version || 'v1.1') + '/history', {
+                    offset: offset,
+                    limit: limit
+                });
             }
 
             function getUserProfile() {
-                return {};
+                return api('me');
             }
 
             function setAuthCredentials(responseType, clientId, scope, state, redirectUri) {
@@ -128,6 +120,34 @@ angular.module('mbergt.uber', [])
                 };
             }
 
+            function signIn() {
+                var deferred = $q.defer();
+
+                $http({
+                    url: 'https://login.uber.com/oauth/token',
+                    method: 'POST',
+                    params: {
+                        client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
+                        client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
+                        grant_type: 'authorization_code',
+                        redirect_uri: 'https://localhost:9000',
+                        code: 'vffWVdV35y764qpwAbTMJEe8ntY3P7'
+                    },
+                    headers: {
+                        Authorization: "Token " + serverToken
+                    }
+                })
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    deferred.reject(data);
+                });
+
+                return deferred.promise;
+            }
+
+
             return {
                 setServerToken: setServerToken,
                 getServerToken: getServerToken,
@@ -137,6 +157,7 @@ angular.module('mbergt.uber', [])
                 signIn: signIn,
                 getPriceEstimates: getPriceEstimates,
                 getTimeEstimates: getTimeEstimates,
+                getPromotions: getPromotions,
                 getHistory: getHistory,
                 getUserProfile: getUserProfile,
                 setAuthCredentials: setAuthCredentials
@@ -144,9 +165,4 @@ angular.module('mbergt.uber', [])
 
 
         };
-    });
-
-angular.module('angularUberApp', ['mbergt.uber'])
-    .factory('myUber', function (mbUber) {
-        return mbUber();
     });
