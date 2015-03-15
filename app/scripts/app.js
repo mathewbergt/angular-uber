@@ -18,14 +18,7 @@ angular.module('mbergt.uber', [])
             var baseUrl = config.baseUrl || 'https://api.uber.com',
                 version = config.version || '/v1/',
                 serverToken = config.serverToken,
-                clientId = config.clientId,
-                authCredentials = {
-                    response_type: null,
-                    client_id: null,
-                    scope: null,
-                    state: null,
-                    redirect_uri: null
-                };
+                clientId = config.clientId;
 
             function api(endpoint, params, headers, data, method) {
                 var deferred = $q.defer();
@@ -110,31 +103,35 @@ angular.module('mbergt.uber', [])
                 return api('me');
             }
 
-            function setAuthCredentials(responseType, clientId, scope, state, redirectUri) {
-                authCredentials = {
-                    response_type: responseType,
-                    client_id: clientId,
-                    scope: scope,
-                    state: state,
-                    redirect_uri: redirectUri
-                };
-            }
-
-            function signIn() {
+            function get() {
                 var deferred = $q.defer();
 
+                // $http({
+                //     url: 'https://login.uber.com/oauth/token',
+                //     method: 'POST',
+                //     params: {
+                //         client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
+                //         client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
+                //         grant_type: 'authorization_code',
+                //         redirect_uri: 'https://localhost:9000',
+                //         code: 'fCakdDsOy49OIN88AjGGs0UVQYOYBN'
+                //     },
+                //     headers: {
+                //         Authorization: "Token " + serverToken
+                //     }
+                // })
+                // .success(function (data) {
+                //     deferred.resolve(data);
+                // })
+                // .error(function (data) {
+                //     deferred.reject(data);
+                // });
+
                 $http({
-                    url: 'https://login.uber.com/oauth/token',
+                    url: '/auth',
                     method: 'POST',
-                    params: {
-                        client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
-                        client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
-                        grant_type: 'authorization_code',
-                        redirect_uri: 'https://localhost:9000',
-                        code: 'vffWVdV35y764qpwAbTMJEe8ntY3P7'
-                    },
-                    headers: {
-                        Authorization: "Token " + serverToken
+                    data: {
+                        code: 'fCakdDsOy49OIN88AjGGs0UVQYOYBN'
                     }
                 })
                 .success(function (data) {
@@ -154,13 +151,11 @@ angular.module('mbergt.uber', [])
                 setClientId: setClientId,
                 getClientId: getClientId,
                 getProducts: getProducts,
-                signIn: signIn,
                 getPriceEstimates: getPriceEstimates,
                 getTimeEstimates: getTimeEstimates,
                 getPromotions: getPromotions,
                 getHistory: getHistory,
-                getUserProfile: getUserProfile,
-                setAuthCredentials: setAuthCredentials
+                getUserProfile: getUserProfile
             };
 
 

@@ -8,16 +8,14 @@
  * Controller of the angularUberApp
  */
 
-angular.module('angularUberApp', ['mbergt.uber'])
+angular.module('angularUberApp', ['mbergt.uber', 'ngRoute'])
     .factory('myUber', function (mbUber) {
         return mbUber({
-        	serverToken: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB'
+        	serverToken: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB',
+        	clientId: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL'
         });
     })
-    .controller('MainCtrl', function ($scope, myUber, $q) {
-	    //myUber.setServerToken('VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB');
-	    //$scope.getProducts = myUber.getProducts;
-	    //$scope.signIn = myUber.signIn;
+    .controller('MainCtrl', function ($scope, myUber, $q) {	    	 
 
 	    function prettyJson(data) {
 	    	return JSON.stringify(data, null, "\t");
@@ -59,9 +57,24 @@ angular.module('angularUberApp', ['mbergt.uber'])
 	    	});
 	    }
 
-	    $scope.signIn = function() {
-	    	myUber.signIn().then(function(d) {
-	    		$scope.uberOutput = prettyJson(d);
-	    	});
+	    $scope.uberLogin = function() {
+	    	window.location = "https://login.uber.com/oauth/authorize?" 
+	    		+ "response_type=code&"
+	    		+ "client_id=" + myUber.getClientId();	    		
 	    }
-	});
+
+	    $scope.authenticate = function() {
+	    	console.log(window.location.search);
+	    }
+
+	    $scope.setCode = function(d) {
+	    	console.log(d);
+	    }
+
+	})
+	.config(['$routeProvider',
+		function($routeProvider) {
+			$routeProvider.
+			when('/:code', {  action: 'main.setCode' });
+		}
+	]);
