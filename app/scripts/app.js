@@ -18,7 +18,8 @@ angular.module('mbergt.uber', [])
             var baseUrl = config.baseUrl || 'https://api.uber.com',
                 version = config.version || '/v1/',
                 serverToken = config.serverToken,
-                clientId = config.clientId;
+                clientId = config.clientId,
+                bearerToken = config.bearerToken;
 
             function api(endpoint, params, headers, data, method) {
                 var deferred = $q.defer();
@@ -28,9 +29,7 @@ angular.module('mbergt.uber', [])
                     method: method ? method : 'GET',
                     params: params,
                     data: data,
-                    headers: {
-                        Authorization: "Token " + serverToken
-                    }
+                    headers: headers || { Authorization: "Token " + serverToken }
                 })
                 .success(function (data) {
                     deferred.resolve(data);
@@ -48,6 +47,14 @@ angular.module('mbergt.uber', [])
 
             function getServerToken() {
                 return serverToken;
+            }
+
+            function setBearerToken(token) {
+                bearerToken = token;
+            }
+
+            function getBearerToken(token) {
+                return bearerToken;
             }
 
             function setClientId(clientId) {
@@ -100,38 +107,17 @@ angular.module('mbergt.uber', [])
             }
 
             function getUserProfile() {
-                return api('me');
+                return api('me', {}, { Authorization: 'Bearer ' + '16bcxG749zqbM2G2zKNMIQyRdDPfqg' });
             }
 
-            function get() {
+            function initAuth(clientId) {
                 var deferred = $q.defer();
-
-                // $http({
-                //     url: 'https://login.uber.com/oauth/token',
-                //     method: 'POST',
-                //     params: {
-                //         client_secret: 'TrYjG6u07PKGKQt5Y4mM5qjPOee07fj4J9MBS3lb',
-                //         client_id: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL',
-                //         grant_type: 'authorization_code',
-                //         redirect_uri: 'https://localhost:9000',
-                //         code: 'fCakdDsOy49OIN88AjGGs0UVQYOYBN'
-                //     },
-                //     headers: {
-                //         Authorization: "Token " + serverToken
-                //     }
-                // })
-                // .success(function (data) {
-                //     deferred.resolve(data);
-                // })
-                // .error(function (data) {
-                //     deferred.reject(data);
-                // });
-
+                
                 $http({
-                    url: '/auth',
+                    url: '/auth/init',
                     method: 'POST',
                     data: {
-                        code: 'fCakdDsOy49OIN88AjGGs0UVQYOYBN'
+                        client_id: clientId || getClientId()
                     }
                 })
                 .success(function (data) {
@@ -148,6 +134,8 @@ angular.module('mbergt.uber', [])
             return {
                 setServerToken: setServerToken,
                 getServerToken: getServerToken,
+                setBearerToken: setBearerToken,
+                getBearerToken: getBearerToken,
                 setClientId: setClientId,
                 getClientId: getClientId,
                 getProducts: getProducts,
@@ -155,7 +143,8 @@ angular.module('mbergt.uber', [])
                 getTimeEstimates: getTimeEstimates,
                 getPromotions: getPromotions,
                 getHistory: getHistory,
-                getUserProfile: getUserProfile
+                getUserProfile: getUserProfile,
+                initAuth: initAuth
             };
 
 

@@ -1,42 +1,39 @@
-<body ng-controller="MainCtrl">
-  <div class="container">
-	  <div class="row">
-	  	<div class="col-sm-12">
-	  		<div class="btn-group">
-			  <button class="btn btn-primary" ng-click="getProducts()">Get Products</button>
-			  <button class="btn btn-primary" ng-click="getPriceEstimates()">Get Price Estimates</button>
-		  </div>
-	  	</div>
+<div ui-view class="container">
+  <div class="row">
+  	<div class="col-sm-12">
+  		<div class="btn-group">
+		  <button class="btn btn-primary" ng-click="getProducts()">Get Products</button>
+		  <button class="btn btn-primary" ng-click="getPriceEstimates()">Get Price Estimates</button>
 	  </div>
-	  <div class="row">
-	  	<div class="col-sm-12">
-	  		<div class="btn-group">
-			  <button class="btn btn-primary" ng-click="getTimeEstimates()">Get Time Estimates</button>
-			  <button class="btn btn-primary" ng-click="getPromotions()">Get Promotions</button>
-		  </div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-sm-12">
-	  		<div class="btn-group">
-			  <button class="btn btn-primary" ng-click="getHistory()">Get History</button>
-			  <button class="btn btn-primary" ng-click="getUserProfile()">Get User Profile</button>
-		  </div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-sm-12">
-	  		<div class="btn-group">
-			  <button class="btn btn-primary" ng-click="uberLogin()">Redirect To Login</button>
-			  <button class="btn btn-primary" ng-click="authenticate()">Authenticate</button>
-		  </div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-sm-12">
-	  		<div class="well">{{ uberOutput }}</div>
-	  	</div>
-	  </div>
+  	</div>
   </div>
-<!--  <button class="btn btn-primary" ng-click="signIn()">Sign In</button>-->
-</body>
+  <div class="row">
+  	<div class="col-sm-12">
+  		<div class="btn-group">
+		  <button class="btn btn-primary" ng-click="getTimeEstimates()">Get Time Estimates</button>
+		  <button class="btn btn-primary" ng-click="getPromotions()">Get Promotions</button>
+	  </div>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-sm-12">
+  		<div class="btn-group">
+		  <button class="btn btn-primary" ng-click="getHistory()">Get History</button>
+		  <button class="btn btn-primary" ng-click="getUserProfile()">Get User Profile</button>
+	  </div>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-sm-12">
+  		<div class="btn-group">
+		  <button class="btn btn-primary" ng-click="authorize()">Authorize</button>
+      <button class="btn btn-primary" ng-click="getUserProfile()">Get Authorized User Profile</button>
+	  </div>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-sm-12">
+  		<div class="well">{{ uberOutput }}</div>
+  	</div>
+  </div>
+</div>

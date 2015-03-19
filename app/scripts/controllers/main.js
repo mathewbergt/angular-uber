@@ -8,14 +8,14 @@
  * Controller of the angularUberApp
  */
 
-angular.module('angularUberApp', ['mbergt.uber', 'ngRoute'])
+var app = angular.module('angularUberApp', ['mbergt.uber', 'ui.router'])
     .factory('myUber', function (mbUber) {
         return mbUber({
         	serverToken: 'VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB',
         	clientId: 'jWWyetwuXd4D8ePGYawyYXRMdj-5MzoL'
         });
     })
-    .controller('MainCtrl', function ($scope, myUber, $q) {	    	 
+    .controller('MainCtrl', ['$scope', 'myUber', '$q', '$location', function ($scope, myUber, $q, $location) {	    	 
 
 	    function prettyJson(data) {
 	    	return JSON.stringify(data, null, "\t");
@@ -45,36 +45,51 @@ angular.module('angularUberApp', ['mbergt.uber', 'ngRoute'])
 	    	});
 	    }
 
-	    $scope.getHistory = function() {
-	    	myUber.getHistory(0, 5).then(function(d) {
-	    		$scope.uberOutput = prettyJson(d);
-	    	});
-	    }
+	    // $scope.getHistory = function() {
+	    // 	myUber.getHistory(0, 5).then(function(d) {
+	    // 		$scope.uberOutput = prettyJson(d);
+	    // 	});
+	    // }
 
 	    $scope.getUserProfile = function() {
-	    	myUber.getUserProfile().then(function(d) {
-	    		$scope.uberOutput = prettyJson(d);
+	    	// myUber.getUserProfile().then(function(d) {
+	    	// 	$scope.uberOutput = prettyJson(d);
+	    	// });
+			var xhr = new XMLHttpRequest();                
+                xhr.open('GET', 'https://api.uber.com/v1/me');
+                xhr.setRequestHeader("Authorization", "Bearer 16bcxG749zqbM2G2zKNMIQyRdDPfqg");
+                xhr.send();
+                //return xhr;
+	    }
+
+	    $scope.authorize = function() {
+	    	myUber.initAuth().then(function(d) {
+	    		window.location = 'https://localhost:8080/auth/doauth';
 	    	});
 	    }
 
-	    $scope.uberLogin = function() {
-	    	window.location = "https://login.uber.com/oauth/authorize?" 
-	    		+ "response_type=code&"
-	    		+ "client_id=" + myUber.getClientId();	    		
+	    $scope.setBearerToken = function(token) {
+	    	myUber.setBearerToken(token);
 	    }
 
-	    $scope.authenticate = function() {
-	    	console.log(window.location.search);
-	    }
+	}]);
 
-	    $scope.setCode = function(d) {
-	    	console.log(d);
-	    }
+	app.config([
+	  '$stateProvider',
+	  '$urlRouterProvider',	  
+	  function($stateProvider, $urlRouterProvider){
 
-	})
-	.config(['$routeProvider',
-		function($routeProvider) {
-			$routeProvider.
-			when('/:code', {  action: 'main.setCode' });
-		}
-	]);
+		$stateProvider
+			.state('authorized', {
+				url: '/access_token/:accessToken',
+				onEnter: function() {},
+				controller: ['$stateParams', '$scope', function($stateParams, $scope) {
+					console.log($stateParams)
+					$scope.setBearerToken($stateParams.accessToken);
+				}]
+			});
+	  }
+	])
+	.run(['$state', function ($state) {}]);
+
+
