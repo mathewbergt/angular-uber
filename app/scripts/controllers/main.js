@@ -57,7 +57,9 @@ var app = angular.module('angularUberApp', ['mbergt.uber', 'ui.router'])
 	    	// });
 			var xhr = new XMLHttpRequest();                
                 xhr.open('GET', 'https://api.uber.com/v1/me');
-                xhr.setRequestHeader("Authorization", "Bearer 16bcxG749zqbM2G2zKNMIQyRdDPfqg");
+                //xhr.setRequestHeader("Authorization", "Token VzlZPiK15pf1rLotl1sJV9rullyxS4Zc-7gK6ILB");
+                xhr.setRequestHeader("Authorization", "Bearer cLNqHxcmOeIS3H9wBHCSjIA1oQ95mH");
+
                 xhr.send();
                 //return xhr;
 	    }
