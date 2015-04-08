@@ -302,7 +302,7 @@ Issues a `POST` request to the `/v1/requests` [endpoint](https://developer.uber.
 
 Example:
 ```javascript
-uberApiService.makeRequest().then(function(requestData) {
+uberApiService.makeRequest('a1111c8c-c720-46c3-8534-2fcdd730040d', 37.775818, -122.418028, 37.8, -122.5).then(function(requestData) {
     console.log(requestData);
 }, function(errorData) {
     console.log(errorData);
