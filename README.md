@@ -8,7 +8,6 @@ _Notes:_
 
 1. Keep your app SECRET confidential. Several Uber API enpoints require the OAuth2.0 Bearer token. This Angular service does not provide functionality to obtain a Bearer token, only to set it within the factory instance. It is up to you to obtain the Bearer token in a secure manner according to the [OAuth2.0 spec](https://tools.ietf.org/html/rfc6749). More information on the API token authentication process with Uber can be found [here](https://developer.uber.com/v1/auth/). A sample Express app is provided to illustrate the process in which one might obtain a Bearer token.
 2. Your origin URI must be set in your Uber API app settings page, and it must use https.
-3. If you are developing your Uber API app on a local environment (such as localhost), endpoints which issue `POST` requests do not work in major modern browsers due to security issues. If you want to read more about this issue, read about it on StackOverflow [here](http://stackoverflow.com/questions/21102690/angularjs-not-detecting-access-control-allow-origin-header).
 
 ##Table of Contents
 * [Install](#install)
