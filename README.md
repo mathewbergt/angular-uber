@@ -16,9 +16,9 @@ _Notes:_
   * [endoint methods](#uberapiservice---uber-api-endpoint-methods)
 
 ##Install
-```shell
-npm install angular-uber
-```
+<!--```shell-->
+<!--npm install angular-uber-->
+<!--```-->
 ##Usage
 1. Include the angular-uber.js script project into your app.
 2. Inject mbergt.uber as a dependancy into your app:
